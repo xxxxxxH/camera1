@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SlimmingActivity"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -17,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@mipmap/bg"
-            android:scaleType="fitCenter" />
+            android:scaleType="centerInside" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -101,6 +99,7 @@
             android:layout_marginTop="11dp"
             android:gravity="center"
             android:text="50"
+            android:visibility="gone"
             android:textColor="#000"
             android:textSize="14sp" />
 

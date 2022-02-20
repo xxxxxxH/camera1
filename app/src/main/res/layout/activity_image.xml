@@ -1,54 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.ImageActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="3">
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="160dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/bg" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/user"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
+        android:layout_marginStart="55dp"
+        android:visibility="gone"
+        android:scaleType="center"
+        android:src="@mipmap/user" />
+</RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="?actionBarSize"
-                android:layout_height="?actionBarSize"
-                android:scaleType="center"
-                android:src="@mipmap/back" />
-
-            <ImageView
-                android:id="@+id/user"
-                android:layout_width="?actionBarSize"
-                android:layout_height="?actionBarSize"
-                android:layout_marginStart="55dp"
-                android:scaleType="center"
-                android:src="@mipmap/user" />
-
-            <ImageView
-                android:layout_width="?actionBarSize"
-                android:layout_height="?actionBarSize"
-                android:layout_alignParentEnd="true"
-                android:scaleType="center"
-                android:src="@mipmap/camera" />
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="160dp"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
@@ -96,6 +81,7 @@
 
     <RelativeLayout
         android:id="@+id/option1"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom">
@@ -190,36 +176,35 @@
     <LinearLayout
         android:id="@+id/option_confirm"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#fff"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/cancel_black" />
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/confirm_black" />
         </RelativeLayout>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

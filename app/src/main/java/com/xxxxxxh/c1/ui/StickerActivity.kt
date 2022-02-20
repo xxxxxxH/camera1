@@ -4,6 +4,7 @@ import android.os.Environment
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.luck.picture.lib.utils.ToastUtils
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.widget.sticker.DrawableSticker
 import kotlinx.android.synthetic.main.activity_sticker.*
@@ -42,6 +43,7 @@ class StickerActivity : BaseActivity() {
                 val file =
                     File(Environment.getExternalStorageDirectory().absolutePath + File.separator + System.currentTimeMillis() + "_sticker.jpg")
                 sticker_view.save(file)
+                ToastUtils.showToast(this,"success")
                 finish()
             }.start()
         }

@@ -8,6 +8,7 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.utils.GlideEngine
+import com.xxxxxxh.c1.utils.PictureSelectorUiUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import lolodev.permissionswrapper.callback.OnRequestPermissionsCallBack
 import lolodev.permissionswrapper.wrapper.PermissionWrapper
@@ -53,6 +54,7 @@ class MainActivity : BaseActivity() {
     private fun openGallery(targetAc: Int) {
         PictureSelector.create(this)
             .openGallery(SelectMimeType.ofImage())
+            .setSelectorUIStyle(PictureSelectorUiUtils.get().setCustomUiStyle())
             .setImageEngine(GlideEngine().createGlideEngine())
             .setMaxSelectNum(1)
             .forResult(object : OnResultCallbackListener<LocalMedia> {
@@ -86,7 +88,7 @@ class MainActivity : BaseActivity() {
                 override fun onResult(result: ArrayList<LocalMedia>?) {
                     result?.let {
                         val url = result[0].realPath
-                        intent = Intent(this@MainActivity, StickerActivity::class.java)
+                        intent = Intent(this@MainActivity, ImageActivity::class.java)
                         intent.putExtra("url", url)
                         startActivity(intent)
                     }
