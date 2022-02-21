@@ -23,9 +23,6 @@ class GlideEngine : ImageEngine {
      * @param imageView 图片承载控件
      */
     override fun loadImage(context: Context, url: String, imageView: ImageView) {
-        if (!ActivityCompatHelper.assertValidRequest(context)) {
-            return
-        }
         Glide.with(context)
             .load(url)
             .into(imageView)
@@ -47,9 +44,6 @@ class GlideEngine : ImageEngine {
         maxHeight: Int,
         call: OnCallbackListener<Bitmap?>?
     ) {
-        if (!ActivityCompatHelper.assertValidRequest(context)) {
-            return
-        }
         Glide.with(context)
             .asBitmap()
             .override(maxWidth, maxHeight)
@@ -78,9 +72,6 @@ class GlideEngine : ImageEngine {
      * @param imageView 承载图片ImageView
      */
     override fun loadAlbumCover(context: Context, url: String, imageView: ImageView) {
-        if (!ActivityCompatHelper.assertValidRequest(context)) {
-            return
-        }
         Glide.with(context)
             .asBitmap()
             .load(url)
@@ -106,9 +97,6 @@ class GlideEngine : ImageEngine {
      * @param imageView 承载图片ImageView
      */
     override fun loadGridImage(context: Context, url: String, imageView: ImageView) {
-        if (!ActivityCompatHelper.assertValidRequest(context)) {
-            return
-        }
         Glide.with(context)
             .load(url)
             .override(200, 200)
