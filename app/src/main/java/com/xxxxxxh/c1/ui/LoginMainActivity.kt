@@ -7,9 +7,9 @@ import androidx.cardview.widget.CardView
 import com.google.gson.Gson
 import com.xxxxxxh.c1.R
 import es.dmoral.prefs.Prefs
-import net.basicmodel.base.BaseActivity
-import net.basicmodel.entity.StatusEntity
-import net.basicmodel.utils.Constant
+import com.xxxxxxh.c1.base.BaseActivity
+import com.xxxxxxh.c1.entity.StatusEntity
+import com.xxxxxxh.c1.utils.Constant
 import org.xutils.common.Callback
 import org.xutils.http.RequestParams
 import org.xutils.x

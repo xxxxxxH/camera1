@@ -3,7 +3,7 @@ package net.basicmodel.ui
 import com.bumptech.glide.Glide
 import com.xxxxxxh.c1.R
 import kotlinx.android.synthetic.main.activity_slimming.*
-import net.basicmodel.base.BaseActivity
+import com.xxxxxxh.c1.base.BaseActivity
 
 class SlimmingActivity : BaseActivity() {
 

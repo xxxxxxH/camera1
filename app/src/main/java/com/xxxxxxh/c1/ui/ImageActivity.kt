@@ -3,7 +3,7 @@ package com.xxxxxxh.c1.ui
 import com.bumptech.glide.Glide
 import com.xxxxxxh.c1.R
 import kotlinx.android.synthetic.main.activity_image.*
-import net.basicmodel.base.BaseActivity
+import com.xxxxxxh.c1.base.BaseActivity
 
 class ImageActivity : BaseActivity() {
     override fun getLayoutId(): Int {

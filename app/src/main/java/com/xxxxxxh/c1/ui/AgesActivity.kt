@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.adapter.AgeAdapter
 import kotlinx.android.synthetic.main.activity_ages.*
-import net.basicmodel.base.BaseActivity
+import com.xxxxxxh.c1.base.BaseActivity
 import net.basicmodel.utils.ResourceManager
 
 class AgesActivity : BaseActivity() {

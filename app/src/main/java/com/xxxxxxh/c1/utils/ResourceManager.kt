@@ -3,7 +3,7 @@ package net.basicmodel.utils
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
-import net.basicmodel.entity.ResourceEntity
+import com.xxxxxxh.c1.entity.ResourceEntity
 
 class ResourceManager {
     companion object {

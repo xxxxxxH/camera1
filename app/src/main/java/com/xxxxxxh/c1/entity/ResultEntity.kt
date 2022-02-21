@@ -1,4 +1,4 @@
-package net.basicmodel.entity
+package com.xxxxxxh.c1.entity
 
 import java.io.Serializable
 

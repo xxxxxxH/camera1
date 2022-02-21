@@ -8,9 +8,9 @@ import com.luck.picture.lib.utils.ToastUtils
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.widget.sticker.DrawableSticker
 import kotlinx.android.synthetic.main.activity_sticker.*
-import net.basicmodel.adapter.StickerAdapter
-import net.basicmodel.base.BaseActivity
-import net.basicmodel.entity.ResourceEntity
+import com.xxxxxxh.c1.adapter.StickerAdapter
+import com.xxxxxxh.c1.base.BaseActivity
+import com.xxxxxxh.c1.entity.ResourceEntity
 import net.basicmodel.utils.ResourceManager
 import java.io.File
 

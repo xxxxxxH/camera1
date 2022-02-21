@@ -12,7 +12,7 @@ import com.xxxxxxh.c1.utils.PictureSelectorUiUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import lolodev.permissionswrapper.callback.OnRequestPermissionsCallBack
 import lolodev.permissionswrapper.wrapper.PermissionWrapper
-import net.basicmodel.base.BaseActivity
+import com.xxxxxxh.c1.base.BaseActivity
 import net.basicmodel.ui.SlimmingActivity
 
 

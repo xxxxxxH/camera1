@@ -1,6 +1,5 @@
 package com.xxxxxxh.c1.utils
 
-import android.R
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -56,7 +55,10 @@ class GlideEngine : ImageEngine {
             .override(maxWidth, maxHeight)
             .load(url)
             .into(object : CustomTarget<Bitmap?>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap?>?) {
+                override fun onResourceReady(
+                    resource: Bitmap,
+                    transition: Transition<in Bitmap?>?
+                ) {
                     call?.onCall(resource)
                 }
 
@@ -87,7 +89,8 @@ class GlideEngine : ImageEngine {
             .sizeMultiplier(0.5f)
             .into(object : BitmapImageViewTarget(imageView) {
                 override fun setResource(resource: Bitmap?) {
-                    val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.resources, resource)
+                    val circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(context.resources, resource)
                     circularBitmapDrawable.cornerRadius = 8f
                     imageView.setImageDrawable(circularBitmapDrawable)
                 }

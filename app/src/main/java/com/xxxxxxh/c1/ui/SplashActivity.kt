@@ -3,7 +3,7 @@ package com.xxxxxxh.c1.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import com.xxxxxxh.c1.R
-import net.basicmodel.base.BaseActivity
+import com.xxxxxxh.c1.base.BaseActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {

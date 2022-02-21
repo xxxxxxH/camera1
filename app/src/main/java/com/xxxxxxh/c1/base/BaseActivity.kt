@@ -1,4 +1,4 @@
-package net.basicmodel.base
+package com.xxxxxxh.c1.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

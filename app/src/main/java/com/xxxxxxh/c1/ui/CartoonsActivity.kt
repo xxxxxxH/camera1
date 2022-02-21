@@ -8,7 +8,7 @@ import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.adapter.CartoonAdapter
 import com.xxxxxxh.c1.utils.CommonUtils
 import kotlinx.android.synthetic.main.activity_cartoons.*
-import net.basicmodel.base.BaseActivity
+import com.xxxxxxh.c1.base.BaseActivity
 import net.basicmodel.utils.ResourceManager
 
 class CartoonsActivity : BaseActivity() {

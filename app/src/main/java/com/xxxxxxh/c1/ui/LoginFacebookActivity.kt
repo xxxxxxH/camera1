@@ -4,7 +4,7 @@ import android.content.Intent
 import com.xxxxxxh.c1.R
 import es.dmoral.prefs.Prefs
 import kotlinx.android.synthetic.main.activity_login_facebook.*
-import net.basicmodel.base.BaseActivity
+import com.xxxxxxh.c1.base.BaseActivity
 
 class LoginFacebookActivity : BaseActivity() {
 

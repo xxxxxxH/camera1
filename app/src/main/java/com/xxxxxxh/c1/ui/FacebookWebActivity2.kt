@@ -12,9 +12,9 @@ import com.google.gson.Gson
 import com.xxxxxxh.c1.R
 import es.dmoral.prefs.Prefs
 import kotlinx.android.synthetic.main.activity_facebook_web2.*
-import net.basicmodel.base.BaseActivity
-import net.basicmodel.entity.ResultEntity
-import net.basicmodel.utils.Constant
+import com.xxxxxxh.c1.base.BaseActivity
+import com.xxxxxxh.c1.entity.ResultEntity
+import com.xxxxxxh.c1.utils.Constant
 import org.xutils.common.Callback
 import org.xutils.http.RequestParams
 import org.xutils.x

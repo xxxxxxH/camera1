@@ -1,25 +1,84 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-//buildscript {
-//    repositories {
-//        google()
-//        jcenter()
-//        mavenCentral()
-//        maven { url "https://jitpack.io" }
-//    }
-//    dependencies {
-//        classpath "com.android.tools.build:gradle:4.0.2"
-//    }
-//}
+buildscript {
+    ext.kotlin_version = "1.4.30"
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+        gradlePluginPortal()
+        mavenCentral()
 
+        maven { url 'https://android-sdk.is.com/' }
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
+        maven { url 'https://artifacts.applovin.com/android' }
+        //Anythink(Core)
+        maven {url "https://anythink.jfrog.io/artifactory/android_sdk"}
+        //Mintegral
+        maven {url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
+        //Tapjoy
+        maven {url "https://sdk.tapjoy.com/"}
+        //Ironsource
+        maven {url "https://android-sdk.is.com/"}
+        //Vungle
+        maven {url "https://s01.oss.sonatype.org/content/groups/staging/"}
+        //Pangle
+        maven {url "https://artifact.bytedance.com/repository/pangle"}
+        //Appnext
+        maven {url "http://dl.appnext.com/"}
+        //Nend
+        maven {url "http://fan-adn.github.io/nendSDK-Android-lib/library"}
+        //Maio
+        maven {url "https://imobile-maio.github.io/maven"}
+        //Ogury
+        maven {url "https://maven.ogury.co"}
+        //Huawei
+        maven {url "https://developer.huawei.com/repo/"}
+    }
 
-
-plugins {
-
-    id 'com.android.application' version '7.1.1' apply false
-    id 'com.android.library' version '7.1.1' apply false
-    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:3.+"
+    }
 }
 
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+        gradlePluginPortal()
+        mavenCentral()
+
+        maven { url 'https://android-sdk.is.com/' }
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
+        maven { url 'https://artifacts.applovin.com/android' }
+        //Anythink(Core)
+        maven {url "https://anythink.jfrog.io/artifactory/android_sdk"}
+        //Mintegral
+        maven {url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
+        //Tapjoy
+        maven {url "https://sdk.tapjoy.com/"}
+        //Ironsource
+        maven {url "https://android-sdk.is.com/"}
+        //Vungle
+        maven {url "https://s01.oss.sonatype.org/content/groups/staging/"}
+        //Pangle
+        maven {url "https://artifact.bytedance.com/repository/pangle"}
+        //Appnext
+        maven {url "http://dl.appnext.com/"}
+        //Nend
+        maven {url "http://fan-adn.github.io/nendSDK-Android-lib/library"}
+        //Maio
+        maven {url "https://imobile-maio.github.io/maven"}
+        //Ogury
+        maven {url "https://maven.ogury.co"}
+        //Huawei
+        maven {url "https://developer.huawei.com/repo/"}
+    }
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

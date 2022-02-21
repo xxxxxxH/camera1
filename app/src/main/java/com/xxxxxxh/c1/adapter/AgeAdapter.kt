@@ -4,7 +4,7 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.xxxxxxh.c1.R
-import net.basicmodel.entity.ResourceEntity
+import com.xxxxxxh.c1.entity.ResourceEntity
 
 class AgeAdapter( data: MutableList<ResourceEntity>?) :
     BaseQuickAdapter<ResourceEntity, BaseViewHolder>(R.layout.item_cartoon, data) {
