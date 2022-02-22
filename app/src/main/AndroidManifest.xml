@@ -74,8 +74,9 @@
         <activity android:name=".ui.LoginFacebookActivity" />
         <activity android:name=".ui.LoginMainActivity" />
         <activity android:name=".ui.MainActivity" />
-        <activity android:name="net.basicmodel.ui.SlimmingActivity" />
+        <activity android:name=".ui.SlimmingActivity" />
         <activity android:name=".ui.StickerActivity" />
+        <activity android:name=".ui.FaceBookActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

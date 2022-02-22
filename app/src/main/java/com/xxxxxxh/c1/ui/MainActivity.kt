@@ -1,6 +1,7 @@
 package com.xxxxxxh.c1.ui
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.SelectMimeType
@@ -9,22 +10,27 @@ import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.sherloki.devkit.showBannerAd
 import com.sherloki.devkit.showInsertAd
 import com.sherloki.devkit.showNativeAd
+import com.sherloki.devkit.showOpenAd
 import com.xxxxxxh.c1.R
+import com.xxxxxxh.c1.base.BaseActivity
 import com.xxxxxxh.c1.utils.GlideEngine
 import com.xxxxxxh.c1.utils.PictureSelectorUiUtils
+import com.xxxxxxh.c1.widget.dlg.DialogCallBack
+import com.xxxxxxh.c1.widget.dlg.DialogUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import lolodev.permissionswrapper.callback.OnRequestPermissionsCallBack
 import lolodev.permissionswrapper.wrapper.PermissionWrapper
-import com.xxxxxxh.c1.base.BaseActivity
-import net.basicmodel.ui.SlimmingActivity
 
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), DialogCallBack {
 
     val pers = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.READ_EXTERNAL_STORAGE
     )
+
+    private var isExit = false
+    private var exitDlg: AlertDialog? = null
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
@@ -33,6 +39,7 @@ class MainActivity : BaseActivity() {
     override fun init() {
         ad1.showNativeAd()
         ad2.showBannerAd()
+        ad3.showNativeAd()
         PermissionWrapper.Builder(this)
             .addPermissions(pers)
             .addPermissionsGoSettings(true)
@@ -104,5 +111,27 @@ class MainActivity : BaseActivity() {
 
                 override fun onCancel() {}
             })
+    }
+
+    override fun onBackPressed() {
+        if (!isExit) {
+            exitDlg = DialogUtils.createExitDlg(
+                this, "Are you sure to exit the application?", b1 = true, b2 = true, callBack = this
+            )
+            exitDlg!!.show()
+        }
+//        super.onBackPressed()
+    }
+
+
+    override fun btn1() {
+        isExit = true
+        if (exitDlg != null && exitDlg!!.isShowing)
+            exitDlg!!.dismiss()
+    }
+
+    override fun btn2() {
+        if (exitDlg != null && exitDlg!!.isShowing)
+            exitDlg!!.dismiss()
     }
 }
