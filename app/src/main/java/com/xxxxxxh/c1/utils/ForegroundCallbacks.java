@@ -77,7 +77,7 @@ public class ForegroundCallbacks implements Application.ActivityLifecycleCallbac
                 try {
                     l.onBecameForeground();
                 } catch (Exception exc) {
-                    Log.i("ForegroundCallbacks",exc.getMessage());
+                    Log.i("ForegroundCallbacks", exc.getMessage());
                 }
             }
         }
@@ -96,7 +96,7 @@ public class ForegroundCallbacks implements Application.ActivityLifecycleCallbac
                         try {
                             l.onBecameBackground();
                         } catch (Exception exc) {
-                            Log.i("ForegroundCallbacks",exc.getMessage());
+                            Log.i("ForegroundCallbacks", exc.getMessage());
                         }
                     }
                 }

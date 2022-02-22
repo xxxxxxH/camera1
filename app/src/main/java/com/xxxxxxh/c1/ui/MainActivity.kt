@@ -46,16 +46,22 @@ class MainActivity : BaseActivity(), DialogCallBack {
             .addRequestPermissionsCallBack(object : OnRequestPermissionsCallBack {
                 override fun onGrant() {
                     stickers.setOnClickListener {
-                        showInsertAd(tag = "inter_filter")
-                        openGallery(0)
+                        val a = showInsertAd(tag = "inter_filter")
+                        if (!a) {
+                            openGallery(0)
+                        }
                     }
                     slimming.setOnClickListener {
-                        showInsertAd(tag = "inter_slim")
-                        openGallery(1)
+                        val a = showInsertAd(tag = "inter_slim")
+                        if (!a) {
+                            openGallery(1)
+                        }
                     }
                     camera.setOnClickListener {
-                        showInsertAd(tag = "inter_camera")
-                        openCamera()
+                        val a = showInsertAd(tag = "inter_camera")
+                        if (!a) {
+                            openCamera()
+                        }
                     }
                 }
 
