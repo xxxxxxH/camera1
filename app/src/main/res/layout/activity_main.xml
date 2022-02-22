@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:maxads="http://schemas.applovin.com/android/1.0"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,29 +10,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#FDC3DA"
         android:layout_weight="3"
+        android:background="#FDC3DA"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:layout_marginTop="145dp"
-            android:src="@mipmap/main_tv"/>
+            android:src="@mipmap/main_tv" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="- Make life batter -"
-            android:textSize="36sp"
-            android:layout_marginBottom="68dp"
-            android:textColor="#fff"
-            android:gravity="center"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@mipmap/main_iv" />
-    </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="68dp"
+            android:gravity="center"
+            android:text="- Make life batter -"
+            android:textColor="#fff"
+            android:textSize="36sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,14 +55,14 @@
                 android:src="@mipmap/main_sticker" />
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Stickers"
                 android:textColor="#000"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,16 +93,29 @@
                 android:src="@mipmap/main_sli" />
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Slimming"
                 android:textColor="#000"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
         </LinearLayout>
 
 
     </LinearLayout>
+
+
+    <com.applovin.mediation.ads.MaxAdView
+        android:id="@+id/ad1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        maxads:adUnitId="@string/banner_ad_id" />
+
+    <com.applovin.mediation.ads.MaxAdView
+        android:id="@+id/ad2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        maxads:adUnitId="@string/banner_ad_id" />
 </LinearLayout>

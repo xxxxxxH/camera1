@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.FaceBookActivity">
+
+    <FrameLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/activityFaceBookIvBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:scaleType="center"
+            android:src="@mipmap/back"
+            app:tint="@android:color/black" />
+
+        <TextView
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="FaceBook Login"
+            android:textSize="16dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.xxxxxxh.c1.widget.sticker.MyWebView
+            android:id="@+id/activityFaceBookWv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:id="@+id/activityFaceBookFl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_x="25dp"
+            android:layout_y="4dp"
+            android:background="@color/white">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

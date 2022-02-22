@@ -6,6 +6,9 @@ import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
+import com.sherloki.devkit.showBannerAd
+import com.sherloki.devkit.showInsertAd
+import com.sherloki.devkit.showNativeAd
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.utils.GlideEngine
 import com.xxxxxxh.c1.utils.PictureSelectorUiUtils
@@ -28,18 +31,23 @@ class MainActivity : BaseActivity() {
     }
 
     override fun init() {
+        ad1.showNativeAd()
+        ad2.showBannerAd()
         PermissionWrapper.Builder(this)
             .addPermissions(pers)
             .addPermissionsGoSettings(true)
             .addRequestPermissionsCallBack(object : OnRequestPermissionsCallBack {
                 override fun onGrant() {
                     stickers.setOnClickListener {
+                        showInsertAd(tag = "inter_filter")
                         openGallery(0)
                     }
                     slimming.setOnClickListener {
+                        showInsertAd(tag = "inter_slim")
                         openGallery(1)
                     }
                     camera.setOnClickListener {
+                        showInsertAd(tag = "inter_camera")
                         openCamera()
                     }
                 }
