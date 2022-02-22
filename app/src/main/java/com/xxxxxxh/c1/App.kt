@@ -6,16 +6,16 @@ import android.os.Process
 import android.text.TextUtils
 import androidx.multidex.MultiDexApplication
 import com.sherloki.devkit.ktx.Ktx
+import com.sherloki.devkit.loge
 import com.xxxxxxh.c1.utils.ForegroundCallbacks
 
-
 class App : MultiDexApplication() {
-    companion object{
-        var instance:App?=null
+    companion object {
+        var instance: App? = null
             private set
     }
 
-    var listenre:ForegroundCallbacks.Listener?=null
+    var listenre: ForegroundCallbacks.Listener? = null
         set
 
     override fun attachBaseContext(base: Context?) {
@@ -28,7 +28,6 @@ class App : MultiDexApplication() {
         Ktx.getInstance().initStartUp()
         instance = this
         val curProcess = getProcessName(this, Process.myPid())
-
         if (!TextUtils.equals(curProcess, "com.xxxxxxh.c1")) {
             return
         }

@@ -1,4 +1,4 @@
-package net.basicmodel.utils
+package com.xxxxxxh.c1.utils
 
 import android.content.ContentResolver
 import android.content.Context

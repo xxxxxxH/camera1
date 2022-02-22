@@ -14,7 +14,7 @@ import com.xxxxxxh.c1.widget.dlg.DialogCallBack
 import com.xxxxxxh.c1.widget.dlg.DialogUtils
 import com.xxxxxxh.c1.widget.sticker.DrawableSticker
 import kotlinx.android.synthetic.main.activity_sticker.*
-import net.basicmodel.utils.ResourceManager
+import com.xxxxxxh.c1.utils.ResourceManager
 import java.io.File
 
 class StickerActivity : BaseActivity(), DialogCallBack {
