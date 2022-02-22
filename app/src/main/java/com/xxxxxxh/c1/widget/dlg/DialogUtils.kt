@@ -30,6 +30,7 @@ object DialogUtils {
     fun createShareDlg(context: Context):AlertDialog{
         val dlg = AlertDialog.Builder(context).create()
         val v = LayoutInflater.from(context).inflate(R.layout.dialog_share, null)
+        dlg.setView(v)
         v.findViewById<MaxNativeAdView>(R.id.nad).showNativeAd()
         return dlg
     }

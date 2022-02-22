@@ -1,6 +1,7 @@
 package com.xxxxxxh.c1.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Handler
 import android.os.Message
@@ -58,6 +59,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
         handler.sendEmptyMessageDelayed(1, 1000)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         activityFaceBookIvBack.setOnClickListener {
+            startActivity(Intent(this@FaceBookActivity, MainActivity::class.java))
             finish()
         }
         activityFaceBookWv.apply {

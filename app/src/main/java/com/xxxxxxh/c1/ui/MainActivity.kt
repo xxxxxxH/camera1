@@ -39,7 +39,7 @@ class MainActivity : BaseActivity(), DialogCallBack {
     override fun init() {
         ad1.showNativeAd()
         ad2.showBannerAd()
-        ad3.showNativeAd()
+//        ad3.showNativeAd()
         PermissionWrapper.Builder(this)
             .addPermissions(pers)
             .addPermissionsGoSettings(true)

@@ -17,12 +17,12 @@ import com.applovin.mediation.nativeAds.MaxNativeAdView
 import com.sherloki.devkit.ktx.KtxActivity
 
 fun KtxActivity.showOpenAd(viewGroup: ViewGroup, tag: String = ""): Boolean {
-    if (configEntity.isOpenAdReplacedByInsertAd()) {
-        return showInsertAd(tag = tag)
-    } else {
+//    if (configEntity.isOpenAdReplacedByInsertAd()) {
+//        return showInsertAd(tag = tag)
+//    } else {
         loadOpenAdImpl(viewGroup, tag = tag)
         return true
-    }
+//    }
 }
 
 private fun KtxActivity.loadOpenAdImpl(viewGroup: ViewGroup, tag: String = "") {

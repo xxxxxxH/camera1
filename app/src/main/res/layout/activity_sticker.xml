@@ -24,8 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:visibility="visible"
-            android:background="@mipmap/bg">
+            android:visibility="visible">
 
             <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/show_edit_iv"
