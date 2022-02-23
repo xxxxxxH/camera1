@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.sherloki.devkit.ktx.KtxActivity
 import com.sherloki.devkit.showOpenAd
+import com.xxxxxxh.c1.R
 import org.xutils.x
 
 abstract class BaseActivity : KtxActivity() {
@@ -38,14 +39,18 @@ abstract class BaseActivity : KtxActivity() {
             isBackground = false
             Log.i("xxxxxxH", "showAd")
             val v = this.findViewById<ViewGroup>(android.R.id.content)
-            val f = FrameLayout(this)
-            f.layoutParams = FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            v.addView(f)
-            v.invalidate()
-            showOpenAd(f)
+            (v.getTag(R.id.open_ad_view_id) as? FrameLayout)?.let {
+                showOpenAd(it)
+            } ?: kotlin.run {
+                val f = FrameLayout(this)
+                f.layoutParams = FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+                v.addView(f)
+                v.setTag(R.id.open_ad_view_id, f)
+                showOpenAd(f)
+            }
         }
     }
 

