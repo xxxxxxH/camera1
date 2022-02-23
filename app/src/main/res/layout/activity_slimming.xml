@@ -7,11 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.applovin.mediation.ads.MaxAdView
-        android:id="@+id/ad1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        maxads:adUnitId="@string/banner_ad_id" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
@@ -223,4 +220,10 @@
                 android:textSize="10sp" />
         </RadioGroup>
     </LinearLayout>
+
+    <com.applovin.mediation.ads.MaxAdView
+        android:id="@+id/ad1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        maxads:adUnitId="@string/banner_ad_id" />
 </LinearLayout>

@@ -8,12 +8,6 @@
     android:orientation="vertical"
     tools:context=".ui.StickerActivity">
 
-    <com.applovin.mediation.ads.MaxAdView
-        android:id="@+id/ad1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        maxads:adUnitId="@string/banner_ad_id" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,6 +42,7 @@
         android:id="@+id/sticker_option"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_weight="1"
         android:background="#fff"
@@ -112,5 +107,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
+    <com.applovin.mediation.ads.MaxAdView
+        android:id="@+id/ad1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        maxads:adUnitId="@string/banner_ad_id" />
 </LinearLayout>

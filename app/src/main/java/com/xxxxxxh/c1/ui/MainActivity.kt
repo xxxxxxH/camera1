@@ -3,10 +3,13 @@ package com.xxxxxxh.c1.ui
 import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.XXPermissions
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
+import com.luck.picture.lib.utils.ToastUtils
 import com.sherloki.devkit.showBannerAd
 import com.sherloki.devkit.showInsertAd
 import com.sherloki.devkit.showNativeAd
@@ -26,7 +29,8 @@ class MainActivity : BaseActivity(), DialogCallBack {
 
     val pers = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.READ_EXTERNAL_STORAGE
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA
     )
 
     private var isExit = false
@@ -39,37 +43,40 @@ class MainActivity : BaseActivity(), DialogCallBack {
     override fun init() {
         ad1.showNativeAd()
         ad2.showBannerAd()
-//        ad3.showNativeAd()
-        PermissionWrapper.Builder(this)
-            .addPermissions(pers)
-            .addPermissionsGoSettings(true)
-            .addRequestPermissionsCallBack(object : OnRequestPermissionsCallBack {
-                override fun onGrant() {
-                    stickers.setOnClickListener {
-                        val a = showInsertAd(tag = "inter_filter")
-                        if (!a) {
-                            openGallery(0)
+        XXPermissions.with(this)
+            .permission(pers)
+            .request(object : OnPermissionCallback{
+                override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
+                    if (all){
+                        stickers.setOnClickListener {
+                            val a = showInsertAd(tag = "inter_filter")
+                            if (!a) {
+                                openGallery(0)
+                            }
                         }
-                    }
-                    slimming.setOnClickListener {
-                        val a = showInsertAd(tag = "inter_slim")
-                        if (!a) {
-                            openGallery(1)
+                        slimming.setOnClickListener {
+                            val a = showInsertAd(tag = "inter_slim")
+                            if (!a) {
+                                openGallery(1)
+                            }
                         }
-                    }
-                    camera.setOnClickListener {
-                        val a = showInsertAd(tag = "inter_camera")
-                        if (!a) {
-                            openCamera()
+                        camera.setOnClickListener {
+                            val a = showInsertAd(tag = "inter_camera")
+                            if (!a) {
+                                openCamera()
+                            }
                         }
+                    }else{
+                        ToastUtils.showToast(this@MainActivity,"some permissions were not granted normally")
                     }
                 }
 
-                override fun onDenied(p0: String?) {
+                override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
+                    super.onDenied(permissions, never)
+                    ToastUtils.showToast(this@MainActivity,"no permissions")
                     finish()
                 }
-
-            }).build().request()
+            })
     }
 
     private fun openGallery(targetAc: Int) {
@@ -103,20 +110,32 @@ class MainActivity : BaseActivity(), DialogCallBack {
     }
 
     private fun openCamera() {
-        PictureSelector.create(this)
-            .openCamera(SelectMimeType.ofImage())
-            .forResult(object : OnResultCallbackListener<LocalMedia> {
-                override fun onResult(result: ArrayList<LocalMedia>?) {
-                    result?.let {
-                        val url = result[0].realPath
-                        intent = Intent(this@MainActivity, ImageActivity::class.java)
-                        intent.putExtra("url", url)
-                        startActivity(intent)
-                    }
+        XXPermissions.with(this)
+            .permission(Manifest.permission.CAMERA)
+            .request(object :OnPermissionCallback{
+                override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
+                    PictureSelector.create(this@MainActivity)
+                        .openCamera(SelectMimeType.ofImage())
+                        .forResult(object : OnResultCallbackListener<LocalMedia> {
+                            override fun onResult(result: ArrayList<LocalMedia>?) {
+                                result?.let {
+                                    val url = result[0].realPath
+                                    intent = Intent(this@MainActivity, ImageActivity::class.java)
+                                    intent.putExtra("url", url)
+                                    startActivity(intent)
+                                }
+                            }
+
+                            override fun onCancel() {}
+                        })
                 }
 
-                override fun onCancel() {}
+                override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
+                    super.onDenied(permissions, never)
+                    ToastUtils.showToast(this@MainActivity,"You cannot use the camera without permission")
+                }
             })
+
     }
 
     override fun onBackPressed() {
@@ -134,6 +153,7 @@ class MainActivity : BaseActivity(), DialogCallBack {
         isExit = true
         if (exitDlg != null && exitDlg!!.isShowing)
             exitDlg!!.dismiss()
+        finish()
     }
 
     override fun btn2() {

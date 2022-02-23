@@ -3,6 +3,7 @@
     android:orientation="vertical"
     xmlns:maxads="http://schemas.applovin.com/android/1.0"
     android:layout_width="match_parent"
+    android:paddingBottom="20dp"
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"

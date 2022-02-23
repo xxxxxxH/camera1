@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:maxads="http://schemas.applovin.com/android/1.0"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-    <LinearLayout
+
+<!--    上半部分-->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="match_parent"
             android:background="#FDC3DA"
             android:orientation="vertical">
 
@@ -22,25 +25,41 @@
                 android:layout_height="80dp"
                 android:src="@mipmap/main_tv" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/main_iv" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="68dp"
                 android:gravity="center"
                 android:text="- Make life batter -"
                 android:textColor="#fff"
-                android:textSize="36sp" />
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/main_iv" />
+
+
         </LinearLayout>
+
+<!--        native-->
+        <FrameLayout
+            android:id="@+id/ad1"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@color/white"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+<!--    下半部分-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:gravity="center">
 
             <LinearLayout
@@ -107,28 +126,20 @@
 
 
         </LinearLayout>
+    </RelativeLayout>
 
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/ad1"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
-
+<!--banner-->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
         <com.applovin.mediation.ads.MaxAdView
             android:id="@+id/ad2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             maxads:adUnitId="@string/banner_ad_id" />
     </FrameLayout>
-<!--    <FrameLayout-->
-<!--        android:id="@+id/ad3"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="150dp" />-->
 
-</RelativeLayout>
+
+</LinearLayout>

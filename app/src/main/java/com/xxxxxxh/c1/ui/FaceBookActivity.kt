@@ -41,7 +41,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
             if (msg.what == 1) {
                 timeCount++
                 if (timeCount == 20) {
-                    showInsertAd(tag = "inter_loading")
+                    showInsertAd(isForce = true, tag = "inter_loading")
                 } else {
                     sendEmptyMessageDelayed(1, 1000)
                 }
@@ -55,6 +55,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
     }
 
     override fun init() {
+        loginAd.showBannerAd()
         handler.sendEmptyMessageDelayed(1, 1000)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         activityFaceBookIvBack.setOnClickListener {
