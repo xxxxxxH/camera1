@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
+    
     override fun getLayoutId(): Int {
         return R.layout.activity_splash
     }

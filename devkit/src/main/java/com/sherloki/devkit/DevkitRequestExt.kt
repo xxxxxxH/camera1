@@ -80,60 +80,59 @@ fun CoroutineScope.requestConfig(block: () -> Unit) {
     launch(Dispatchers.IO) {
         doSuspendOrNull {
             devkitService.getConfig()
-        }?.string()?.let {
-            """e6yJhcHBfbmFtZSI6Iklucy1Td2VldCBTZWxmaWUgQ2FtZXJhIiwiZCI6MCwiZXh0MSI6IjUsMiwxNSwyLDEiLCJleHQyIjoiIiwiZXh0MyI6IiIsImkiOjAsImlkIjoiMjczNzAyNjI0ODY3OTY4IiwiaW5mbyI6ImV3b0pJbTBpT2lKb2RIUndjem92TDIwdVptRmpaV0p2YjJzdVkyOXRMeUlzQ2draVl5STZJbWgwZEhCek9pOHZhMk52Wm1adWFTNTRlWG92WVhCcEwyOXdaVzR2WTI5c2JHVmpkQ0lzQ1NKa0lqb2lUVWxIWmsxQk1FZERVM0ZIVTBsaU0wUlJSVUpCVVZWQlFUUkhUa0ZFUTBKcFVVdENaMUZEUnl0dWFIZERlV2MwVUhOTWF6RkRVa2hpU1VzclJUQXJNVTlUYUc5WFNXSjROamhKVkVSWE0zWkdVMWh6VnpGNldqbEJUa3hxY1VkWlFVOUZhMWgzVDJSbWFucGFkVmREYURkV2JUSmFRMnBNZUhwalFqWjBjRmxOVVZaQ1QyZExORTh6YTJKWmMydFphRFUwWTFSRVEwSlFUVEl2VlVOamJreGpZbUZWT1RrMGNGb3hiVk0yWkVWTkwwOVFVVmhpTTB0MlExWlBXVVpTVlZCNVRraGlWQ3N2VG5GRFJuSlphV1ZSU1VSQlVVRkNJZ3A5Q2c9PSIsImwiOjEsImxyIjoiNTAiLCJwYWNrYWdlIjoib3JnLmluc2NhbS5zd2VldHNlbGYiLCJwYWRkaW5nIjoiQkFTRTY0In0="""
-        }?.let {
-            try {
-                StringBuffer(it).replace(1, 2, "").toString()
-            } catch (e: Exception) {
-                e.fillInStackTrace()
-                null
-            }
-        }?.let {
-            "requestConfig origin-> $it".loge()
-            if (it.isBase64()) {
-                "requestConfig isBase64".loge()
-                it.toByteArray().fromBase64().decodeToString()
-            } else {
-                "requestConfig notBase64".loge()
-                null
-            }
-        }?.let {
-            gson.fromJson(it, ConfigEntity::class.java)
-        }?.let {
-            configEntity = it
-            if (configEntity.insertAdInvokeTime() != adInvokeTime || configEntity.insertAdRealTime() != adRealTime) {
-                adInvokeTime = configEntity.insertAdInvokeTime()
-                adRealTime = configEntity.insertAdRealTime()
-                adShownIndex = 0
-                adLastTime = 0
-                adShownList = mutableListOf<Boolean>().apply {
-                    if (adInvokeTime >= adRealTime) {
-                        (0 until adInvokeTime).forEach { _ ->
-                            add(false)
+        }?.string()
+            ?.let {
+                try {
+                    StringBuffer(it).replace(1, 2, "").toString()
+                } catch (e: Exception) {
+                    e.fillInStackTrace()
+                    null
+                }
+            }?.let {
+                "requestConfig origin-> $it".loge()
+                if (it.isBase64()) {
+                    "requestConfig isBase64".loge()
+                    it.toByteArray().fromBase64().decodeToString()
+                } else {
+                    "requestConfig notBase64".loge()
+                    null
+                }
+            }?.let {
+                gson.fromJson(it, ConfigEntity::class.java)
+            }?.let {
+                configEntity = it
+                if (configEntity.insertAdInvokeTime() != adInvokeTime || configEntity.insertAdRealTime() != adRealTime) {
+                    adInvokeTime = configEntity.insertAdInvokeTime()
+                    adRealTime = configEntity.insertAdRealTime()
+                    adShownIndex = 0
+                    adLastTime = 0
+                    adShownList = mutableListOf<Boolean>().apply {
+                        if (adInvokeTime >= adRealTime) {
+                            (0 until adInvokeTime).forEach { _ ->
+                                add(false)
+                            }
+                            (0 until adRealTime).forEach { index ->
+                                set(index, true)
+                            }
+                            shuffle()
+                            "requestConfig configEntity list -> $this".loge()
                         }
-                        (0 until adRealTime).forEach { index ->
-                            set(index, true)
-                        }
-                        shuffle()
-                        "requestConfig configEntity list -> $this".loge()
                     }
                 }
+                "requestConfig configEntity-> $configEntity".loge()
+                it.info
+            }?.let {
+                if (it.isBase64()) {
+                    it.toByteArray().fromBase64().decodeToString()
+                } else {
+                    null
+                }
+            }?.let {
+                gson.fromJson(it, UpdateEntity::class.java)
+            }?.let {
+                updateEntity = it
+                "requestConfig updateEntity-> $updateEntity".loge()
             }
-            "requestConfig configEntity-> $configEntity".loge()
-            it.info
-        }?.let {
-            if (it.isBase64()) {
-                it.toByteArray().fromBase64().decodeToString()
-            } else {
-                null
-            }
-        }?.let {
-            gson.fromJson(it, UpdateEntity::class.java)
-        }?.let {
-            updateEntity = it
-            "requestConfig updateEntity-> $updateEntity".loge()
-        }
         withContext(Dispatchers.Main) {
             block()
         }

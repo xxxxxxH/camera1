@@ -22,7 +22,7 @@ data class ConfigEntity(
 ) {
     fun needLogin() = l == 1
 
-    fun needDeepLink() = d == 0
+    fun needDeepLink() = d == 1
 
     fun faceBookId() = id ?: ""
 

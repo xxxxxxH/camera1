@@ -33,6 +33,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
 
     private var timeCount = 0
 
+
     private val handler = @SuppressLint("HandlerLeak")
     object : Handler() {
         override fun handleMessage(msg: Message) {
@@ -57,8 +58,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
         handler.sendEmptyMessageDelayed(1, 1000)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         activityFaceBookIvBack.setOnClickListener {
-            startActivity(Intent(this@FaceBookActivity, MainActivity::class.java))
-            finish()
+            onBackPressed()
         }
         activityFaceBookWv.apply {
             setListener(this@FaceBookActivity, this@FaceBookActivity)
@@ -157,10 +157,17 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
         activityFaceBookWv.onResume()
     }
 
+    override fun onBackPressed() {
+        handler.removeCallbacksAndMessages(null)
+        val a = showInsertAd(showByPercent = true, tag = "inter_login")
+        if (!a) {
+            super.onBackPressed()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         activityFaceBookWv.onDestroy()
-        showInsertAd(showByPercent = true, tag = "inter_login")
     }
 
     override fun onPause() {

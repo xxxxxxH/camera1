@@ -4,7 +4,6 @@ import android.app.Application
 import android.os.Build
 import android.util.Log
 import android.webkit.WebView
-import androidx.browser.customtabs.CustomTabsClient.getPackageName
 import com.anythink.core.api.ATSDK
 import com.anythink.core.api.NetTrafficeCallback
 import com.applovin.sdk.AppLovinMediationProvider

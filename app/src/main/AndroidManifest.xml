@@ -69,10 +69,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.CameraActivity" />
-        <activity android:name=".ui.FacebookWebActivity2" />
         <activity android:name=".ui.ImageActivity" />
-        <activity android:name=".ui.LoginFacebookActivity" />
-        <activity android:name=".ui.LoginMainActivity" />
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.SlimmingActivity" />
         <activity android:name=".ui.StickerActivity" />
