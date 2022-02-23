@@ -75,7 +75,6 @@ fun KtxActivity.showInsertAd(showByPercent: Boolean = false, isForce: Boolean = 
             if ((showByPercent && configEntity.isCanShowByPercent()) || (!showByPercent)) {
                 if (System.currentTimeMillis() - adLastTime > configEntity.insertAdOffset() * 1000) {
                     if (adShownList.getOrNull(adShownIndex) == true) {
-                        adLastTime = System.currentTimeMillis()
                         showInsertAdImpl(tag)
                         return true
                     }
@@ -106,7 +105,8 @@ fun KtxActivity.maxInterstitialAdCreator(loadOnly: Boolean = true, tag: String =
             }
 
             override fun onAdHidden(ad: MaxAd?) {
-                "MaxInterstitialAd onAdDisplayed".loge()
+                "MaxInterstitialAd onAdHidden".loge()
+                adLastTime = System.currentTimeMillis()
             }
 
             override fun onAdClicked(ad: MaxAd?) {
@@ -115,10 +115,12 @@ fun KtxActivity.maxInterstitialAdCreator(loadOnly: Boolean = true, tag: String =
 
             override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
                 "MaxInterstitialAd onAdLoadFailed $adUnitId $error".loge()
+                adLastTime = System.currentTimeMillis()
             }
 
             override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
                 "MaxInterstitialAd onAdDisplayFailed".loge()
+                adLastTime = System.currentTimeMillis()
             }
         })
         loadAd()

@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
-    
+
     override fun getLayoutId(): Int {
         return R.layout.activity_splash
     }
@@ -23,7 +23,7 @@ class SplashActivity : BaseActivity() {
             } else {
                 if (configEntity.needLogin()) {
                     if (configEntity.needDeepLink() && configEntity.faceBookId().isNotBlank()) {
-                        initFaceBook(configEntity.faceBookId()) {
+                        fetchAppLink(configEntity.faceBookId()) {
                             "initFaceBook $it".loge()
                             it?.let {
                                 login.isVisible = true

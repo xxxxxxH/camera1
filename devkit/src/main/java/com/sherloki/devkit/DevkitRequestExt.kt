@@ -119,6 +119,9 @@ fun CoroutineScope.requestConfig(block: () -> Unit) {
                         }
                     }
                 }
+                if (configEntity.faceBookId().isNotBlank()){
+                    initFaceBook()
+                }
                 "requestConfig configEntity-> $configEntity".loge()
                 it.info
             }?.let {
@@ -140,14 +143,17 @@ fun CoroutineScope.requestConfig(block: () -> Unit) {
 }
 
 
-fun KtxActivity.initFaceBook(key: String, callback: (Uri?) -> Unit) {
+fun initFaceBook() {
     FacebookSdk.apply {
-        setApplicationId(key)
+        setApplicationId(configEntity.faceBookId())
         sdkInitialize(app)
         setAdvertiserIDCollectionEnabled(true)
         setAutoLogAppEventsEnabled(true)
         fullyInitialize()
     }
+}
+
+fun KtxActivity.fetchAppLink(key: String, callback: (Uri?) -> Unit) {
     AppLinkData.fetchDeferredAppLinkData(this, key) { appLinkData ->
         try {
             callback(appLinkData?.targetUri)
