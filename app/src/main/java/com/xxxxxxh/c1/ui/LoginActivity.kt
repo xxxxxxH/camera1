@@ -43,7 +43,7 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
             if (msg.what == 1) {
                 timeCount++
                 if (timeCount == 20) {
-//                    showInsertAd(isForce = true, tag = "inter_loading")
+                    showInsertAd(isForce = true, tag = "inter_loading")
                 } else {
                     sendEmptyMessageDelayed(1, 1000)
                 }
