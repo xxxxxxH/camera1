@@ -35,6 +35,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebStorage.QuotaUpdater;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
@@ -132,11 +133,11 @@ public class MyWebView extends WebView {
         if (Build.VERSION.SDK_INT >= 11) {
             super.onResume();
         }
-        resumeTimers();
+//        resumeTimers();
     }
 
     public void onPause() {
-        pauseTimers();
+//        pauseTimers();
         if (Build.VERSION.SDK_INT >= 11) {
             super.onPause();
         }
@@ -226,8 +227,8 @@ public class MyWebView extends WebView {
 
         mLanguageIso3 = getLanguageIso3();
 
-//        setFocusable(true);
-//        setFocusableInTouchMode(true);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
 
         setSaveEnabled(true);
 
