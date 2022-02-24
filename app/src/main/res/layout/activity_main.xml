@@ -9,36 +9,24 @@
 
 
 <!--    上半部分-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:layout_weight="3">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:background="#FDC3DA"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:src="@mipmap/main_tv" />
-
-            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="- Make life batter -"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:src="@mipmap/main_iv" />
-
+                android:src="@mipmap/main_bg" />
 
         </LinearLayout>
 
@@ -46,10 +34,12 @@
         <FrameLayout
             android:id="@+id/ad1"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
             android:background="@color/white"
             android:layout_alignParentBottom="true" />
-    </RelativeLayout>
+    </LinearLayout>
 
 <!--    下半部分-->
     <RelativeLayout
