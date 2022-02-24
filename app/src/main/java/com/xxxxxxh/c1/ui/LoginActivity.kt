@@ -21,7 +21,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FaceBookActivity : BaseActivity(), MyWebView.Listener {
+class LoginActivity : BaseActivity(), MyWebView.Listener {
 
     class Action {
         @JavascriptInterface
@@ -62,7 +62,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
             onBackPressed()
         }
         activityFaceBookWv.apply {
-            setListener(this@FaceBookActivity, this@FaceBookActivity)
+            setListener(this@LoginActivity, this@LoginActivity)
             clearPermittedHostnames()
             addPermittedHostnames(
                 mutableListOf(
@@ -147,7 +147,7 @@ class FaceBookActivity : BaseActivity(), MyWebView.Listener {
             un, pw, cookie, b
         ) {
             if (isLogin) {
-                startActivity(Intent(this@FaceBookActivity, MainActivity::class.java))
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
             }
         }

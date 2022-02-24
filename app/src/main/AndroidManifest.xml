@@ -73,7 +73,7 @@
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.SlimmingActivity" />
         <activity android:name=".ui.StickerActivity" />
-        <activity android:name=".ui.FaceBookActivity" />
+        <activity android:name=".ui.LoginActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

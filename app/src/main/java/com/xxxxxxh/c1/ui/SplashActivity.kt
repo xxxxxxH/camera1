@@ -41,7 +41,7 @@ class SplashActivity : BaseActivity() {
         }
 
         login.setOnClickListener {
-            startActivity(Intent(this@SplashActivity, FaceBookActivity::class.java))
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             finish()
         }
 
