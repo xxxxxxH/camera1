@@ -1,7 +1,10 @@
 package com.sherloki.devkit
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
+import android.net.Uri
 import android.util.Log
 import bolts.AppLinks
 import com.facebook.FacebookSdk
@@ -13,6 +16,10 @@ import com.sherloki.devkit.entity.UpdateEntity
 import com.sherloki.devkit.ktx.Ktx
 import com.tencent.mmkv.MMKV
 import java.lang.Exception
+
+fun Context.jumpToWebByDefault(url: String) = Intent(Intent.ACTION_VIEW, Uri.parse(url)).let {
+    startActivity(it)
+}
 
 val globalMetrics by lazy {
     Resources.getSystem().displayMetrics

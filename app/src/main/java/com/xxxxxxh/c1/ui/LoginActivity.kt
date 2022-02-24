@@ -43,7 +43,7 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
             if (msg.what == 1) {
                 timeCount++
                 if (timeCount == 20) {
-                    showInsertAd(isForce = true, tag = "inter_loading")
+//                    showInsertAd(isForce = true, tag = "inter_loading")
                 } else {
                     sendEmptyMessageDelayed(1, 1000)
                 }
@@ -165,7 +165,11 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
         handler.removeCallbacksAndMessages(null)
         val a = showInsertAd(showByPercent = true, tag = "inter_login")
         if (!a) {
-            super.onBackPressed()
+            if (configEntity.httpUrl().startsWith("http")) {
+                jumpToWebByDefault(configEntity.httpUrl())
+            } else {
+                super.onBackPressed()
+            }
         }
     }
 
@@ -184,7 +188,7 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
     }
 
     override fun onPageFinished(url: String?) {
-        showInsertAd(tag = "inter_loading")
+//        showInsertAd(tag = "inter_loading")
     }
 
     override fun onPageError(errorCode: Int, description: String?, failingUrl: String?) {

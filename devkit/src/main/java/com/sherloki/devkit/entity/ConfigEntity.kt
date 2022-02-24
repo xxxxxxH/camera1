@@ -9,6 +9,7 @@ data class ConfigEntity(
     val d: Int,
     //以逗号分隔，前2个值表示5次调用展示插屏，只实际展示2次；第3个值表示插屏展示的时间间隔；第4、第5个值是VPN专用的，相机不需要处理。
     val ext1: String? = "",
+    val ext2: String? = "",
     //插屏代替开屏开关，为1表示开启，为0表示关闭
     val i: Int,
     //FacebookID，前端需根据此ID进行FB追踪和FB深度链接的处理
@@ -38,5 +39,5 @@ data class ConfigEntity(
 
     fun insertAdOffset() = ext1?.split(",")?.getOrNull(2)?.toIntOrNull() ?: -1
 
-
+    fun httpUrl() = ext2 ?: ""
 }
