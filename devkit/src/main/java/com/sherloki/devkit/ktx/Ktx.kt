@@ -63,7 +63,7 @@ class Ktx private constructor(application: Application) {
 
             override fun onResultCallback(isEU: Boolean) {
                 if (isEU && ATSDK.getGDPRDataLevel(app) == ATSDK.UNKNOWN) {
-                    ATSDK.showGdprAuth(app)
+//                    ATSDK.showGdprAuth(app)
                 }
                 Log.e("Demoapplication", "onResultCallback:$isEU")
             }

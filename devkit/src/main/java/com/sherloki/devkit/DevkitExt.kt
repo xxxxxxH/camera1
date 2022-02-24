@@ -1,6 +1,7 @@
 package com.sherloki.devkit
 
 import android.app.Activity
+import android.content.res.Resources
 import android.util.Log
 import bolts.AppLinks
 import com.facebook.FacebookSdk
@@ -12,6 +13,18 @@ import com.sherloki.devkit.entity.UpdateEntity
 import com.sherloki.devkit.ktx.Ktx
 import com.tencent.mmkv.MMKV
 import java.lang.Exception
+
+val globalMetrics by lazy {
+    Resources.getSystem().displayMetrics
+}
+
+val globalWidth by lazy {
+    globalMetrics.widthPixels
+}
+
+val globalHeight by lazy {
+    globalMetrics.heightPixels
+}
 
 var account
     get() = mmkv.getString(DevkitConstant.KEY_ACCOUNT, "") ?: ""

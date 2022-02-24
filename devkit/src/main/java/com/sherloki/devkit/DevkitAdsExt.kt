@@ -2,9 +2,14 @@ package com.sherloki.devkit
 
 import android.util.Log
 import android.view.ViewGroup
+import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
+import com.anythink.core.api.AdError
 import com.anythink.nativead.splash.api.ATNativeSplash
 import com.anythink.nativead.splash.api.ATNativeSplashListener
+import com.anythink.splashad.api.ATSplashAd
+import com.anythink.splashad.api.ATSplashAdListener
+import com.anythink.splashad.api.IATSplashEyeAd
 import com.applovin.mediation.MaxAd
 import com.applovin.mediation.MaxAdListener
 import com.applovin.mediation.MaxAdViewAdListener
@@ -26,44 +31,37 @@ fun KtxActivity.showOpenAd(viewGroup: ViewGroup, tag: String = ""): Boolean {
 }
 
 private fun KtxActivity.loadOpenAdImpl(viewGroup: ViewGroup, tag: String = "") {
-    ATNativeSplash(
-        this,
-        viewGroup,
-        null,
-        getString(R.string.open_ad_id),
-        mutableMapOf(),
-        object : ATNativeSplashListener {
-            override fun onAdLoaded() {
-                Log.e("loadOpenAdImpl", "Develop callback loaded")
-            }
+    var splashAd: ATSplashAd? = null
+    splashAd = ATSplashAd(this, getString(R.string.open_ad_id), null, object : ATSplashAdListener {
+        override fun onAdLoaded() {
+            Log.e("loadOpenAdImpl", "onAdLoaded")
+            splashAd?.show(this@loadOpenAdImpl, viewGroup)
+        }
 
-            override fun onNoAdError(msg: String) {
-                Log.e("loadOpenAdImpl", "Develop callback onNoAdError :$msg")
-                viewGroup.removeAllViews()
-            }
+        override fun onNoAdError(p0: AdError?) {
+            Log.e("loadOpenAdImpl", "onNoAdError $p0")
+        }
 
-            override fun onAdShow(entity: ATAdInfo) {
-                Log.e("loadOpenAdImpl", "Develop callback onAdShow:$entity")
-            }
+        override fun onAdShow(p0: ATAdInfo?) {
+            Log.e("loadOpenAdImpl", "onAdShow $p0")
+        }
 
-            override fun onAdClick(entity: ATAdInfo) {
-                Log.e("loadOpenAdImpl", "Develop callback onAdClick:$entity")
-            }
+        override fun onAdClick(p0: ATAdInfo?) {
+            Log.e("loadOpenAdImpl", "onAdClick")
+        }
 
-            override fun onAdSkip() {
-                Log.e("loadOpenAdImpl", "Develop callback onAdSkip")
-                viewGroup.removeAllViews()
-            }
+        override fun onAdDismiss(p0: ATAdInfo?, p1: IATSplashEyeAd?) {
+            Log.e("loadOpenAdImpl", "onAdDismiss")
+        }
+    }, 5000)
 
-            override fun onAdTimeOver() {
-                Log.e("loadOpenAdImpl", "Develop callback onAdTimeOver")
-                viewGroup.removeAllViews()
-            }
-
-            override fun onAdTick(millisUtilFinished: Long) {
-                Log.e("loadOpenAdImpl", "Develop callback onAdTick:$millisUtilFinished")
-            }
-        })
+    splashAd.setLocalExtra(
+        mutableMapOf<String, Any>(
+            ATAdConst.KEY.AD_WIDTH to globalWidth,
+            ATAdConst.KEY.AD_HEIGHT to (globalHeight * 0.85).toInt()
+        )
+    )
+    splashAd.loadAd()
 }
 
 fun KtxActivity.showInsertAd(showByPercent: Boolean = false, isForce: Boolean = false, tag: String = ""): Boolean {
