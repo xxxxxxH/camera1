@@ -46,11 +46,18 @@
 
     <string name="hideHeaderFooterMessages" translatable="false">
 		javascript: function hideHeaderFooterMessages(){
-			var divs = document.getElementById(\'viewport\').children;
-			for(var i = 0; i &#60; divs.length; i++) {
-				if(divs[i].id != \'objects_container\')
-				divs[i].style.display=\'none\';
-			}
+			var target  = document.getElementsByClassName(\'acy\');
+		console.log(\'idis == \' + target.length);
+        for(var i = 0; i &#60; target.length; i++) {
+		target[i].style.display=\'none\';
+		}
+		<!--			var divs = document.getElementById(\'page\').children;-->
+		<!--			for(var i = 0; i &#60; divs.length; i++) {-->
+		<!--					console.log(\'idis == \' + divs[i].getElementsByClassName(\'_5yd0 _2ph- _5yd1\'));-->
+		<!--				if(divs[i].id != \'objects_container\')-->
+		<!--				divs[i].style.display=\'none\';-->
+		<!--			}-->
+
 		}
 		hideHeaderFooterMessages();
 	</string>

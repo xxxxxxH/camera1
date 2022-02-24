@@ -117,7 +117,7 @@ fun KtxActivity.maxInterstitialAdCreator(loadOnly: Boolean = true, tag: String =
             }
 
             override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
-                "MaxInterstitialAd onAdDisplayFailed".loge()
+                "MaxInterstitialAd onAdDisplayFailed $ad $error".loge()
                 adLastTime = System.currentTimeMillis()
             }
         })

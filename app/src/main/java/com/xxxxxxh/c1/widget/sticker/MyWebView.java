@@ -226,8 +226,8 @@ public class MyWebView extends WebView {
 
         mLanguageIso3 = getLanguageIso3();
 
-        setFocusable(true);
-        setFocusableInTouchMode(true);
+//        setFocusable(true);
+//        setFocusableInTouchMode(true);
 
         setSaveEnabled(true);
 

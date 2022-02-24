@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:maxads="http://schemas.applovin.com/android/1.0"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.FaceBookActivity">
 
     <FrameLayout
-        android:id="@+id/titleBar"
-        android:background="@android:color/white"
+        android:id="@+id/titleBarFl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
         <ImageView
             android:id="@+id/activityFaceBookIvBack"
@@ -21,31 +22,29 @@
             app:tint="@android:color/black" />
 
         <TextView
-            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="FaceBook Login"
+            android:textColor="@android:color/black"
             android:textSize="16dp" />
 
     </FrameLayout>
 
     <FrameLayout
-        android:layout_below="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleBarFl">
 
         <com.xxxxxxh.c1.widget.sticker.MyWebView
             android:id="@+id/activityFaceBookWv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <FrameLayout
             android:id="@+id/activityFaceBookFl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_x="25dp"
-            android:layout_y="4dp"
             android:background="@color/white">
 
             <ProgressBar
@@ -61,10 +60,12 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom">
+
         <com.applovin.mediation.ads.MaxAdView
             android:id="@+id/loginAd"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            maxads:adUnitId="@string/banner_ad_id" />
     </FrameLayout>
 
 </RelativeLayout>

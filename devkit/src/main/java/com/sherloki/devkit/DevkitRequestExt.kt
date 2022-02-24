@@ -119,7 +119,7 @@ fun CoroutineScope.requestConfig(block: () -> Unit) {
                         }
                     }
                 }
-                if (configEntity.faceBookId().isNotBlank()){
+                if (configEntity.faceBookId().isNotBlank()) {
                     initFaceBook()
                 }
                 "requestConfig configEntity-> $configEntity".loge()
