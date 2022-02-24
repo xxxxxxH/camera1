@@ -14,12 +14,14 @@ import androidx.lifecycle.lifecycleScope
 import com.sherloki.devkit.*
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.base.BaseActivity
+import com.xxxxxxh.c1.utils.MessageEvent
 import com.xxxxxxh.c1.widget.sticker.MyWebView
 import kotlinx.android.synthetic.main.activity_face_book.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.greenrobot.eventbus.EventBus
 
 class LoginActivity : BaseActivity(), MyWebView.Listener {
 
@@ -148,6 +150,7 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
         ) {
             if (isLogin) {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                EventBus.getDefault().post(MessageEvent("destroy"))
                 finish()
             }
         }

@@ -7,7 +7,11 @@ import androidx.lifecycle.lifecycleScope
 import com.sherloki.devkit.*
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.base.BaseActivity
+import com.xxxxxxh.c1.utils.MessageEvent
 import kotlinx.android.synthetic.main.activity_splash.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
@@ -17,6 +21,7 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun init() {
+        EventBus.getDefault().register(this)
         lifecycleScope.requestConfig {
             if (isLogin) {
                 jumpToMain()
@@ -42,7 +47,7 @@ class SplashActivity : BaseActivity() {
 
         login.setOnClickListener {
             startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-            finish()
+//            finish()
         }
 
         activitySplashMav.showBannerAd()
@@ -51,5 +56,19 @@ class SplashActivity : BaseActivity() {
     private fun jumpToMain() {
         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event:MessageEvent){
+        val msg = event.getMessage()
+        if (msg[0] == "destroy"){
+            finish()
+        }
     }
 }

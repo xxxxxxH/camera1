@@ -12,6 +12,7 @@
         android:id="@+id/activitySplashMav"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         maxads:adUnitId="@string/banner_ad_id" />
 
     <ImageView

@@ -23,6 +23,7 @@ import com.xxxxxxh.c1.widget.dlg.DialogUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import lolodev.permissionswrapper.callback.OnRequestPermissionsCallBack
 import lolodev.permissionswrapper.wrapper.PermissionWrapper
+import kotlin.system.exitProcess
 
 
 class MainActivity : BaseActivity(), DialogCallBack {
@@ -153,7 +154,8 @@ class MainActivity : BaseActivity(), DialogCallBack {
         isExit = true
         if (exitDlg != null && exitDlg!!.isShowing)
             exitDlg!!.dismiss()
-        finish()
+        exitProcess(0)
+//        finish()
     }
 
     override fun btn2() {
