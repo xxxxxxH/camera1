@@ -80,6 +80,7 @@ class MainActivity : BaseActivity(), DialogCallBack {
                         block()
                     } else {
                         ToastUtils.showToast(this@MainActivity, "some permissions were not granted normally")
+                        finish()
                     }
                 }
 
