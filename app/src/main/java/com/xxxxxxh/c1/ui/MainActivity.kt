@@ -44,37 +44,48 @@ class MainActivity : BaseActivity(), DialogCallBack {
     override fun init() {
         ad1.showNativeAd()
         ad2.showBannerAd()
+        stickers.setOnClickListener {
+            requestPermission {
+                val a = showInsertAd(tag = "inter_filter")
+                if (!a) {
+                    openGallery(0)
+                }
+            }
+        }
+        slimming.setOnClickListener {
+            requestPermission {
+                val a = showInsertAd(tag = "inter_slim")
+                if (!a) {
+                    openGallery(1)
+                }
+            }
+        }
+        camera.setOnClickListener {
+            requestPermission {
+                val a = showInsertAd(tag = "inter_camera")
+                if (!a) {
+                    openCamera()
+                }
+            }
+        }
+        requestPermission()
+    }
+
+    private fun requestPermission(block: () -> Unit = {}) {
         XXPermissions.with(this)
             .permission(pers)
-            .request(object : OnPermissionCallback{
+            .request(object : OnPermissionCallback {
                 override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
-                    if (all){
-                        stickers.setOnClickListener {
-                            val a = showInsertAd(tag = "inter_filter")
-                            if (!a) {
-                                openGallery(0)
-                            }
-                        }
-                        slimming.setOnClickListener {
-                            val a = showInsertAd(tag = "inter_slim")
-                            if (!a) {
-                                openGallery(1)
-                            }
-                        }
-                        camera.setOnClickListener {
-                            val a = showInsertAd(tag = "inter_camera")
-                            if (!a) {
-                                openCamera()
-                            }
-                        }
-                    }else{
-                        ToastUtils.showToast(this@MainActivity,"some permissions were not granted normally")
+                    if (all) {
+                        block()
+                    } else {
+                        ToastUtils.showToast(this@MainActivity, "some permissions were not granted normally")
                     }
                 }
 
                 override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
                     super.onDenied(permissions, never)
-                    ToastUtils.showToast(this@MainActivity,"no permissions")
+                    ToastUtils.showToast(this@MainActivity, "no permissions")
                     finish()
                 }
             })
@@ -113,7 +124,7 @@ class MainActivity : BaseActivity(), DialogCallBack {
     private fun openCamera() {
         XXPermissions.with(this)
             .permission(Manifest.permission.CAMERA)
-            .request(object :OnPermissionCallback{
+            .request(object : OnPermissionCallback {
                 override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
                     PictureSelector.create(this@MainActivity)
                         .openCamera(SelectMimeType.ofImage())
@@ -133,7 +144,7 @@ class MainActivity : BaseActivity(), DialogCallBack {
 
                 override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
                     super.onDenied(permissions, never)
-                    ToastUtils.showToast(this@MainActivity,"You cannot use the camera without permission")
+                    ToastUtils.showToast(this@MainActivity, "You cannot use the camera without permission")
                 }
             })
 

@@ -30,10 +30,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
-    <uses-permission
-        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -86,7 +82,9 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <meta-data android:name="ScopedStorage" android:value="true" />
+        <meta-data
+            android:name="ScopedStorage"
+            android:value="true" />
     </application>
 
 </manifest>
