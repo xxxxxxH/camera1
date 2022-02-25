@@ -114,7 +114,6 @@ fun CoroutineScope.requestConfig(block: () -> Unit) {
                             (0 until adRealTime).forEach { index ->
                                 set(index, true)
                             }
-                            shuffle()
                             "requestConfig configEntity list -> $this".loge()
                         }
                     }
@@ -155,10 +154,9 @@ fun initFaceBook() {
 
 fun KtxActivity.fetchAppLink(key: String, callback: (Uri?) -> Unit) {
     AppLinkData.fetchDeferredAppLinkData(this, key) { appLinkData ->
-        try {
+        if (!isHandle) {
+            isHandle = true
             callback(appLinkData?.targetUri)
-        } catch (e: java.lang.Exception) {
-            callback(null)
         }
     }
 }

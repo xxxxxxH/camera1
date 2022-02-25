@@ -2,6 +2,7 @@ package com.sherloki.devkit
 
 import android.util.Log
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.anythink.core.api.ATAdConst
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.AdError
@@ -19,62 +20,101 @@ import com.applovin.mediation.ads.MaxInterstitialAd
 import com.applovin.mediation.nativeAds.MaxNativeAdListener
 import com.applovin.mediation.nativeAds.MaxNativeAdLoader
 import com.applovin.mediation.nativeAds.MaxNativeAdView
+import com.sherloki.devkit.ktx.Ktx
 import com.sherloki.devkit.ktx.KtxActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.*
+import kotlin.math.max
+
+fun KtxActivity.createOpenAd(offset: Long = 0L) {
+    lifecycleScope.launch(Dispatchers.IO) {
+        if (offset > 0) {
+            delay(offset)
+        }
+        withContext(Dispatchers.Main) {
+            openAd?.onDestory()
+            openAd = openAdCreator()
+        }
+    }
+}
+
+fun KtxActivity.createMaxInterstitialAd(offset: Long = 0L) {
+    lifecycleScope.launch(Dispatchers.IO) {
+        if (offset > 0) {
+            delay(offset)
+        }
+        withContext(Dispatchers.Main) {
+            maxInterstitialAd?.destroy()
+            maxInterstitialAd = maxInterstitialAdCreator()
+        }
+    }
+}
 
 fun KtxActivity.showOpenAd(viewGroup: ViewGroup, tag: String = ""): Boolean {
     if (configEntity.isOpenAdReplacedByInsertAd()) {
         return showInsertAd(tag = tag)
     } else {
-        loadOpenAdImpl(viewGroup, tag = tag)
-        return true
+        return showOpenAdImpl(viewGroup, tag = tag)
     }
 }
 
-private fun KtxActivity.loadOpenAdImpl(viewGroup: ViewGroup, tag: String = "") {
-    var splashAd: ATSplashAd? = null
-    splashAd = ATSplashAd(this, getString(R.string.open_ad_id), null, object : ATSplashAdListener {
+fun KtxActivity.openAdCreator() =
+    ATSplashAd(this, getString(R.string.open_ad_id), null, object : ATSplashAdListener {
         override fun onAdLoaded() {
-            Log.e("loadOpenAdImpl", "onAdLoaded")
-            splashAd?.show(this@loadOpenAdImpl, viewGroup)
+            Log.e("openAdCreator", "onAdLoaded")
         }
 
         override fun onNoAdError(p0: AdError?) {
-            Log.e("loadOpenAdImpl", "onNoAdError $p0")
+            Log.e("openAdCreator", "onNoAdError $p0")
+            createOpenAd(3000)
         }
 
         override fun onAdShow(p0: ATAdInfo?) {
-            Log.e("loadOpenAdImpl", "onAdShow $p0")
+            Log.e("openAdCreator", "onAdShow $p0")
         }
 
         override fun onAdClick(p0: ATAdInfo?) {
-            Log.e("loadOpenAdImpl", "onAdClick")
+            Log.e("openAdCreator", "onAdClick")
         }
 
         override fun onAdDismiss(p0: ATAdInfo?, p1: IATSplashEyeAd?) {
-            Log.e("loadOpenAdImpl", "onAdDismiss")
-        }
-    }, 5000)
+            Log.e("openAdCreator", "onAdDismiss")
+            createOpenAd()
 
-    splashAd.setLocalExtra(
-        mutableMapOf<String, Any>(
-            ATAdConst.KEY.AD_WIDTH to globalWidth,
-            ATAdConst.KEY.AD_HEIGHT to (globalHeight * 0.85).toInt()
+        }
+    }, 5000).apply {
+        setLocalExtra(
+            mutableMapOf<String, Any>(
+                ATAdConst.KEY.AD_WIDTH to globalWidth,
+                ATAdConst.KEY.AD_HEIGHT to (globalHeight * 0.85).toInt()
+            )
         )
-    )
-    splashAd.loadAd()
+        loadAd()
+    }
+
+
+fun KtxActivity.showOpenAdImpl(viewGroup: ViewGroup, tag: String = ""): Boolean {
+    openAd?.let {
+        if (it.isAdReady) {
+            it.show(this, viewGroup)
+            return true
+        }
+    }
+    return false
 }
 
 fun KtxActivity.showInsertAd(showByPercent: Boolean = false, isForce: Boolean = false, tag: String = ""): Boolean {
     if (isForce) {
-        showInsertAdImpl(tag)
-        return true
+        return showInsertAdImpl(tag)
     } else {
         if (configEntity.isCanShowInsertAd()) {
             if ((showByPercent && configEntity.isCanShowByPercent()) || (!showByPercent)) {
                 if (System.currentTimeMillis() - adLastTime > configEntity.insertAdOffset() * 1000) {
                     if (adShownList.getOrNull(adShownIndex) == true) {
-                        showInsertAdImpl(tag)
-                        return true
+                        return showInsertAdImpl(tag)
                     }
                     adShownIndex++
                     if (adShownIndex >= adShownList.size) {
@@ -87,15 +127,12 @@ fun KtxActivity.showInsertAd(showByPercent: Boolean = false, isForce: Boolean = 
     }
 }
 
-fun KtxActivity.maxInterstitialAdCreator(loadOnly: Boolean = true, tag: String = "") =
+fun KtxActivity.maxInterstitialAdCreator() =
     MaxInterstitialAd(getString(R.string.insert_ad_id), this).apply {
         "MaxInterstitialAd maxInterstitialAdCreator".loge()
         setListener(object : MaxAdListener {
             override fun onAdLoaded(ad: MaxAd?) {
                 "MaxInterstitialAd onAdLoaded".loge()
-                if (!loadOnly) {
-                    showAd(tag)
-                }
             }
 
             override fun onAdDisplayed(ad: MaxAd?) {
@@ -105,6 +142,7 @@ fun KtxActivity.maxInterstitialAdCreator(loadOnly: Boolean = true, tag: String =
             override fun onAdHidden(ad: MaxAd?) {
                 "MaxInterstitialAd onAdHidden".loge()
                 adLastTime = System.currentTimeMillis()
+                createMaxInterstitialAd()
             }
 
             override fun onAdClicked(ad: MaxAd?) {
@@ -114,26 +152,26 @@ fun KtxActivity.maxInterstitialAdCreator(loadOnly: Boolean = true, tag: String =
             override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
                 "MaxInterstitialAd onAdLoadFailed $adUnitId $error".loge()
                 adLastTime = System.currentTimeMillis()
+                createMaxInterstitialAd(3000)
             }
 
             override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
                 "MaxInterstitialAd onAdDisplayFailed $ad $error".loge()
                 adLastTime = System.currentTimeMillis()
+                createMaxInterstitialAd(3000)
             }
         })
         loadAd()
     }
 
-private fun KtxActivity.showInsertAdImpl(tag: String = "") {
-    if (maxInterstitialAd?.isReady == true) {
-        "MaxInterstitialAd showInsertAdImpl0".loge()
-        maxInterstitialAd?.showAd(tag)
-    } else {
-        "MaxInterstitialAd showInsertAdImpl1".loge()
-        maxInterstitialAd?.destroy()
-        maxInterstitialAd = null
-        maxInterstitialAd = maxInterstitialAdCreator(false, tag)
+private fun KtxActivity.showInsertAdImpl(tag: String = ""): Boolean {
+    maxInterstitialAd?.let {
+        if (it.isReady) {
+            it.showAd(tag)
+            return true
+        }
     }
+    return false
 }
 
 fun ViewGroup.showNativeAd() {
