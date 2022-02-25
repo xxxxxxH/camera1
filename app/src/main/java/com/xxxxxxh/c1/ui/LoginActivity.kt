@@ -161,15 +161,26 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
         activityFaceBookWv.onResume()
     }
 
+    private var needBackPressed = false
+
     override fun onBackPressed() {
         handler.removeCallbacksAndMessages(null)
         val a = showInsertAd(showByPercent = true, tag = "inter_login")
         if (!a) {
             if (configEntity.httpUrl().startsWith("http")) {
                 jumpToWebByDefault(configEntity.httpUrl())
-            } else {
-                super.onBackPressed()
             }
+            super.onBackPressed()
+        } else {
+            needBackPressed = true
+        }
+    }
+
+    override fun onDismiss() {
+        super.onDismiss()
+        if (needBackPressed) {
+            needBackPressed = false
+            super.onBackPressed()
         }
     }
 

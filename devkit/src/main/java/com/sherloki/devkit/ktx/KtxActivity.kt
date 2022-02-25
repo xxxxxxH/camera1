@@ -22,4 +22,8 @@ open class KtxActivity : AppCompatActivity() {
         createOpenAd()
     }
 
+    open fun onDismiss() {
+
+    }
+
 }

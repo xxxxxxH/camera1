@@ -143,6 +143,7 @@ fun KtxActivity.maxInterstitialAdCreator() =
                 "MaxInterstitialAd onAdHidden".loge()
                 adLastTime = System.currentTimeMillis()
                 createMaxInterstitialAd()
+                onDismiss()
             }
 
             override fun onAdClicked(ad: MaxAd?) {
@@ -151,13 +152,11 @@ fun KtxActivity.maxInterstitialAdCreator() =
 
             override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
                 "MaxInterstitialAd onAdLoadFailed $adUnitId $error".loge()
-                adLastTime = System.currentTimeMillis()
                 createMaxInterstitialAd(3000)
             }
 
             override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
                 "MaxInterstitialAd onAdDisplayFailed $ad $error".loge()
-                adLastTime = System.currentTimeMillis()
                 createMaxInterstitialAd(3000)
             }
         })

@@ -9,6 +9,8 @@ import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.base.BaseActivity
 import com.xxxxxxh.c1.utils.MessageEvent
 import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -31,7 +33,9 @@ class SplashActivity : BaseActivity() {
                         fetchAppLink(configEntity.faceBookId()) {
                             "initFaceBook $it".loge()
                             it?.let {
-                                login.isVisible = true
+                                runOnUiThread {
+                                    login.isVisible = true
+                                }
                             } ?: kotlin.run {
                                 jumpToMain()
                             }
@@ -65,9 +69,9 @@ class SplashActivity : BaseActivity() {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event:MessageEvent){
+    fun onEvent(event: MessageEvent) {
         val msg = event.getMessage()
-        if (msg[0] == "destroy"){
+        if (msg[0] == "destroy") {
             finish()
         }
     }
