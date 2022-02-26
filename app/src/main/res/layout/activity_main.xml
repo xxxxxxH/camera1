@@ -37,7 +37,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginTop="15dp"
-            android:background="@color/white"
+            android:background="@android:color/white"
             android:layout_alignParentBottom="true" />
     </LinearLayout>
 
@@ -123,12 +123,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true">
-
-        <com.applovin.mediation.ads.MaxAdView
-            android:id="@+id/ad2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            maxads:adUnitId="@string/banner_ad_id" />
     </FrameLayout>
 
 

@@ -2,7 +2,6 @@ package com.xxxxxxh.c1.ui
 
 import android.app.AlertDialog
 import com.bumptech.glide.Glide
-import com.sherloki.devkit.showBannerAd
 import com.xxxxxxh.c1.R
 import kotlinx.android.synthetic.main.activity_slimming.*
 import com.xxxxxxh.c1.base.BaseActivity
@@ -20,7 +19,6 @@ class SlimmingActivity : BaseActivity() ,DialogCallBack{
     }
 
     override fun init() {
-        ad1.showBannerAd()
         val url = intent.getStringExtra("url") as String
         Glide.with(this).load(url).into(slimming_pv)
         cancel.setOnClickListener { finish() }

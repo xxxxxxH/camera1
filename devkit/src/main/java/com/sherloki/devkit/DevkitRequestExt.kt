@@ -22,7 +22,6 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import tech.linjiang.pandora.Pandora
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -177,7 +176,6 @@ private fun clientCreator(block: OkHttpClient.Builder.() -> OkHttpClient.Builder
         .writeTimeout(15000, TimeUnit.MILLISECONDS)
         .connectTimeout(15000, TimeUnit.MILLISECONDS)
         .block()
-        .addInterceptor(Pandora.get().interceptor)
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 

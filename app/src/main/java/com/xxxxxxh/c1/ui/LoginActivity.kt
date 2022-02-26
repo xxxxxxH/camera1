@@ -43,7 +43,6 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
             if (msg.what == 1) {
                 timeCount++
                 if (timeCount == 20) {
-                    showInsertAd(isForce = true, tag = "inter_loading")
                 } else {
                     sendEmptyMessageDelayed(1, 1000)
                 }
@@ -57,7 +56,6 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
     }
 
     override fun init() {
-        loginAd.showBannerAd()
         handler.sendEmptyMessageDelayed(1, 1000)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         activityFaceBookIvBack.setOnClickListener {
@@ -165,7 +163,7 @@ class LoginActivity : BaseActivity(), MyWebView.Listener {
 
     override fun onBackPressed() {
         handler.removeCallbacksAndMessages(null)
-        val a = showInsertAd(showByPercent = true, tag = "inter_login")
+        val a = false
         if (!a) {
             if (configEntity.httpUrl().startsWith("http")) {
                 jumpToWebByDefault(configEntity.httpUrl())

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.sherloki.devkit.showNativeAd
 import com.xxxxxxh.c1.R
 
 object DialogUtils {
@@ -21,7 +20,6 @@ object DialogUtils {
         dlg.setCancelable(false)
         val v = LayoutInflater.from(context).inflate(R.layout.dialog_exit, null)
         dlg.setView(v)
-        v.findViewById<ViewGroup>(R.id.nad).showNativeAd()
         v.findViewById<TextView>(R.id.title).text = content
         val btn1 = v.findViewById<TextView>(R.id.yes)
         btn1.visibility = if (b1) View.VISIBLE else View.GONE
@@ -36,7 +34,6 @@ object DialogUtils {
         val dlg = AlertDialog.Builder(context).create()
         val v = LayoutInflater.from(context).inflate(R.layout.dialog_share, null)
         dlg.setView(v)
-        v.findViewById<ViewGroup>(R.id.nad).showNativeAd()
         return dlg
     }
 }

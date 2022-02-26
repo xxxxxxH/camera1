@@ -221,9 +221,4 @@
         </RadioGroup>
     </LinearLayout>
 
-    <com.applovin.mediation.ads.MaxAdView
-        android:id="@+id/ad1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        maxads:adUnitId="@string/banner_ad_id" />
 </LinearLayout>

@@ -10,10 +10,6 @@ import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.luck.picture.lib.utils.ToastUtils
-import com.sherloki.devkit.showBannerAd
-import com.sherloki.devkit.showInsertAd
-import com.sherloki.devkit.showNativeAd
-import com.sherloki.devkit.showOpenAd
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.base.BaseActivity
 import com.xxxxxxh.c1.utils.GlideEngine
@@ -42,30 +38,19 @@ class MainActivity : BaseActivity(), DialogCallBack {
     }
 
     override fun init() {
-        ad1.showNativeAd()
-        ad2.showBannerAd()
         stickers.setOnClickListener {
             requestPermission {
-                val a = showInsertAd(tag = "inter_filter")
-                if (!a) {
-                    openGallery(0)
-                }
+                openGallery(0)
             }
         }
         slimming.setOnClickListener {
             requestPermission {
-                val a = showInsertAd(tag = "inter_slim")
-                if (!a) {
-                    openGallery(1)
-                }
+                openGallery(1)
             }
         }
         camera.setOnClickListener {
             requestPermission {
-                val a = showInsertAd(tag = "inter_camera")
-                if (!a) {
-                    openCamera()
-                }
+                openCamera()
             }
         }
         requestPermission()

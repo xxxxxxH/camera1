@@ -7,15 +7,11 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.sherloki.devkit.ktx.KtxActivity
-import com.sherloki.devkit.showOpenAd
 import com.xxxxxxh.c1.R
 import org.xutils.x
 
 abstract class BaseActivity : KtxActivity() {
 
-    private var isBackground = false
-
-    private var showAd = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,28 +26,10 @@ abstract class BaseActivity : KtxActivity() {
 
     override fun onStop() {
         super.onStop()
-        isBackground = isBackground()
     }
 
     override fun onResume() {
         super.onResume()
-        if (isBackground) {
-            isBackground = false
-            Log.i("xxxxxxH", "showAd")
-            val v = this.findViewById<ViewGroup>(android.R.id.content)
-            (v.getTag(R.id.open_ad_view_id) as? FrameLayout)?.let {
-                showOpenAd(it)
-            } ?: kotlin.run {
-                val f = FrameLayout(this)
-                f.layoutParams = FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                )
-                v.addView(f)
-                v.setTag(R.id.open_ad_view_id, f)
-                showOpenAd(f)
-            }
-        }
     }
 
     private fun isBackground(): Boolean {

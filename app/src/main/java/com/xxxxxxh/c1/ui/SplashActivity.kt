@@ -54,7 +54,6 @@ class SplashActivity : BaseActivity() {
 //            finish()
         }
 
-        activitySplashMav.showBannerAd()
     }
 
     private fun jumpToMain() {

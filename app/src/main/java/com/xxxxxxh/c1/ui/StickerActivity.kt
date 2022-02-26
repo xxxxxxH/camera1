@@ -5,7 +5,6 @@ import android.os.Environment
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.sherloki.devkit.showBannerAd
 import com.xxxxxxh.c1.R
 import com.xxxxxxh.c1.adapter.StickerAdapter
 import com.xxxxxxh.c1.base.BaseActivity
@@ -30,7 +29,6 @@ class StickerActivity : BaseActivity(), DialogCallBack {
     }
 
     override fun init() {
-        ad1.showBannerAd()
         val url = intent.getStringExtra("url") as String
         Glide.with(this).load(url).into(show_edit_iv)
         data = ResourceManager.get()

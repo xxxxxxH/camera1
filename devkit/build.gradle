@@ -3,8 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-apply from: 'topon.gradle'
-
 android {
     compileSdkVersion 31
 
@@ -73,10 +71,10 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
-    api 'com.github.whataa:pandora:androidx_v2.1.0'
+//    api 'com.github.whataa:pandora:androidx_v2.1.0'
 //    api 'com.gitlab.sher-loki:epic:1.0'
 //    api 'com.github.getActivity:MultiLanguages:8.0'
-//    api 'org.greenrobot:eventbus:3.3.1'
+    api 'org.greenrobot:eventbus:3.3.1'
 //    api 'com.jaeger.statusbarutil:library:1.5.1'
 
     /**
@@ -84,22 +82,5 @@ dependencies {
      */
     api 'com.facebook.android:facebook-android-sdk:12.3.0'
     api 'com.parse.bolts:bolts-android:1.4.0'
-
-    /**
-     * max sdk 和adapters
-     */
-    api 'com.applovin:applovin-sdk:+'
-    api 'com.applovin.mediation:adcolony-adapter:+'
-    api 'com.applovin.mediation:ironsource-adapter:+'
-    api 'com.applovin.mediation:mintegral-adapter:+'
-    api 'com.applovin.mediation:facebook-adapter:+'
-    api 'com.applovin.mediation:google-ad-manager-adapter:+'
-    api 'com.applovin.mediation:google-adapter:+'
-
-
-    api('com.facebook.stetho:stetho:1.3.1')
-
-    api('androidx.preference:preference-ktx:1.1.1')
-
 
 }

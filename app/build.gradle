@@ -3,16 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-//导入 max plugin
-apply plugin: 'applovin-quality-service'
-applovin {
-    apiKey "moK9OXK1AK_ECgViqZK52knVsT9SShmGo_aMq9-I-bJO0Waeta684Tw8cCZbkVb6X9y4G469XZLh9eA57oy_-S"
-}
-
 android {
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
 
     ndkVersion "21.1.6352462"
     compileSdkVersion 31
